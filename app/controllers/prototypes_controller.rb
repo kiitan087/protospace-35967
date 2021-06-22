@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :authenticate_user! expect: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @prototypes = Prototype.includes(:user)
@@ -50,6 +50,6 @@ class PrototypesController < ApplicationController
   end
 
   def authenticate_user!
-    redirect_to action: :edit
+    redirect_to action: :index
   end
 end
