@@ -10,7 +10,7 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    @prototype = Prototype.new(prototype_params)
+    @prototype = Prototype.create(prototype_params)
     if @prototype.save
       redirect_to root_path
     else
@@ -50,6 +50,8 @@ class PrototypesController < ApplicationController
   end
 
   def authenticate_user!
-    redirect_to action: :index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end
